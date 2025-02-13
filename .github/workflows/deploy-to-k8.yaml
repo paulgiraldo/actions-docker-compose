@@ -56,7 +56,7 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v4
       
-      - name: Configurar kubectl...
+      - name: Configurar kubectl....
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.CLUSTER_KUBE_CONFIG_K8 }}
