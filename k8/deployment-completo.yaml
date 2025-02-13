@@ -28,7 +28,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mysql-paul
+        app: mysql
     spec:
       containers:
       - name: mysql-container-paul
@@ -54,7 +54,7 @@ metadata:
   namespace: actions-cluster-paul
 spec:
   selector:
-    app: mysql-paul
+    app: mysql
   ports:
   - port: 3306
     protocol: TCP
