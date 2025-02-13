@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  private apiUrl = 'http://137.184.149.74:3000/api/users'
+  private apiUrl = 'http://24.144.65.234:3000/api/users'
 
   constructor(private http: HttpClient) { }
 
