@@ -69,11 +69,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-paul
+      app: backend
   template:
     metadata:
       labels:
-        app: backend-paul
+        app: backend
     spec:
       containers:
       - name: backend-container-paul
@@ -98,7 +98,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: backend-paul
+    app: backend
   ports:
   - port: 80
     protocol: TCP
@@ -113,11 +113,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend-paul
+      app: frontend
   template:
     metadata:
       labels:
-        app: frontend-paul
+        app: frontend
     spec:
       containers:
       - name: frontend-container-paul
@@ -133,7 +133,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: frontend-paul
+    app: frontend
   ports:
   - port: 80
     protocol: TCP
