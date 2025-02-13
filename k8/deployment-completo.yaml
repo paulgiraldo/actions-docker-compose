@@ -24,11 +24,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: mysql-paul
   template:
     metadata:
       labels:
-        app: mysql
+        app: mysql-paul
     spec:
       containers:
       - name: mysql-container-paul
