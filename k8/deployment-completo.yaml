@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: actions-cluster
+  name: actions-cluster-paul
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pvc
-  namespace: actions-cluster
+  name: mysql-pvc-paul
+  namespace: actions-cluster-paul
 spec:
   resources:
     requests:
@@ -18,8 +18,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
-  namespace: actions-cluster
+  name: mysql-deployment-paul
+  namespace: actions-cluster-paul
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql-container
+      - name: mysql-container-paul
         image: mysql:5.7
         env:
           - name: MYSQL_ROOT_PASSWORD
@@ -45,17 +45,16 @@ spec:
             mountPath: /var/lib/mysql
       volumes:
         - name: mysql-storage
-          persistentVolumeClaim:
-            claimName: mysql-pvc
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
-  namespace: actions-cluster
+  name: mysql-service-paul
+  namespace: actions-cluster-paul
 spec:
   selector:
-    app: mysql
+    app: mysql-paul
   ports:
   - port: 3306
     protocol: TCP
@@ -64,24 +63,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
-  namespace: actions-cluster
+  name: backend-deployment-paul
+  namespace: actions-cluster-paul
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend
+      app: backend-paul
   template:
     metadata:
       labels:
-        app: backend
+        app: backend-paul
     spec:
       containers:
-      - name: backend-container
+      - name: backend-container-paul
         image: fercdevv/backend-k8:latest
         env:
           - name: DB_HOST
-            value: mysql
+            value: mysql-service
           - name: DB_USER
             value: root
           - name: DB_PASSWORD
@@ -94,12 +93,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
-  namespace: actions-cluster
+  name: backend-service-paul
+  namespace: actions-cluster-paul
 spec:
   type: LoadBalancer
   selector:
-    app: backend
+    app: backend-paul
   ports:
   - port: 80
     protocol: TCP
@@ -108,20 +107,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
-  namespace: actions-cluster
+  name: frontend-deployment-paul
+  namespace: actions-cluster-paul
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-paul
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-paul
     spec:
       containers:
-      - name: frontend-container
+      - name: frontend-container-paul
         image: fercdevv/frontend-k8:latest
         ports:
         - containerPort: 80
@@ -129,12 +128,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service
-  namespace: actions-cluster
+  name: frontend-service-paul
+  namespace: actions-cluster-paul
 spec:
   type: LoadBalancer
   selector:
-    app: frontend
+    app: frontend-paul
   ports:
   - port: 80
     protocol: TCP
