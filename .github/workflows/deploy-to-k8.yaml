@@ -15,7 +15,7 @@ jobs:
       - name: Construir imagen del backend
         run: |
           cd backend
-          docker build -t fercdevv/backend-k8:latest .
+          docker build -t paulgiraldo/backend-k8:latest .
 
       - name: Autenticando en dockerhub
         uses: docker/login-action@v3
@@ -25,7 +25,7 @@ jobs:
       
       - name: Publicando imagen al dockerhub..
         run: |
-          docker push fercdevv/backend-k8:latest
+          docker push paulgiraldo/backend-k8:latest
   
   build-frontend:
     needs: build-backend
@@ -37,7 +37,7 @@ jobs:
       - name: Construir imagen del frontend
         run: |
           cd frontend/angular-frontend
-          docker build -t fercdevv/frontend-k8:latest .
+          docker build -t paulgiraldo/frontend-k8:latest .
 
       - name: Autenticando en dockerhub
         uses: docker/login-action@v3
@@ -47,7 +47,7 @@ jobs:
       
       - name: Publicando imagen al dockerhub..
         run: |
-          docker push fercdevv/frontend-k8:latest
+          docker push paulgiraldo/frontend-k8:latest
   
   deploy-k8:
     needs: build-frontend
