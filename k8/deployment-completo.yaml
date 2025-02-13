@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
       - name: backend-container-paul
-        image: fercdevv/backend-k8:latest
+        image: paulgiraldo/backend-k8:latest
         env:
           - name: DB_HOST
             value: mysql-service-paul
@@ -121,7 +121,7 @@ spec:
     spec:
       containers:
       - name: frontend-container-paul
-        image: fercdevv/frontend-k8:latest
+        image: paulgiraldo/frontend-k8:latest
         ports:
         - containerPort: 80
 ---
