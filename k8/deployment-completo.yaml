@@ -24,7 +24,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-paul
+      app: mysql
   template:
     metadata:
       labels:
